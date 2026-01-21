@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Limit Power Consulting</title>
+  <meta name="description" content="Independent Electrical Feasibility & Capacity Advisory" />
+  <meta name="color-scheme" content="light dark" />
+
+  <style>
+    :root{
+      /* Brand palette (logo-matched) */
+      --blue-500:#2563EB;
+      --blue-600:#1D4ED8;
+
+      --slate-950:#0B1220;
+      --slate-900:#0F172A;
+      --slate-700:#334155;
+      --slate-600:#475569;
+      --slate-300:#CBD5E1;
+      --slate-200:#E2E8F0;
+      --slate-100:#F1F5F9;
+
+      --bg:#FFFFFF;
+      --surface:rgba(255,255,255,0.85);
+      --text:#0F172A;
+      --muted:#475569;
+      --border:rgba(15,23,42,0.12);
+
+      --radius:18px;
+      --max:1080px;
+      --shadow:0 18px 50px rgba(2,6,23,0.10);
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#070B14;
+        --surface:rgba(15,23,42,0.80);
+        --text:#E5E7EB;
+        --muted:#A3B0C2;
+        --border:rgba(226,232,240,0.12);
+        --shadow:0 18px 50px rgba(0,0,0,0.45);
+      }
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:48px 20px 72px;
+    }
+
+    header{
+      text-align:center;
+      margin-bottom:48px;
+    }
+
+    .logo img{
+      width:160px;
+      max-width:70vw;
+      height:auto;
+      margin-bottom:20px;
+    }
+
+    h1{
+      font-size:42px;
+      letter-spacing:0.14em;
+      margin:0;
+      text-transform:uppercase;
+    }
+
+    .subtitle{
+      margin-top:10px;
+      font-size:14px;
+      letter-spacing:0.26em;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+
+    .tagline{
+      margin-top:18px;
+      font-size:16px;
+      color:var(--muted);
+      max-width:64ch;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    section{
+      margin-top:36px;
+      padding-top:28px;
+      border-top:1px solid var(--border);
+    }
+
+    h2{
+      font-size:14px;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    p{color:var(--muted);}
+
+    ul{
+      margin:12px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+
+    li{margin:8px 0;}
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    form{
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    label{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    input,textarea{
+      width:100%;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      font-family:inherit;
+    }
+
+    textarea{min-height:120px}
+
+    .btn{
+      margin-top:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--blue-500);
+      background:linear-gradient(135deg,var(--blue-500),var(--blue-600));
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    footer{
+      margin-top:56px;
+      padding-top:24px;
+      border-top:1px solid var(--border);
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <!-- Optional logo -->
+      <!-- <div class="logo"><img src="logo.png" alt="Limit Power Consulting logo"></div> -->
+
+      <h1>LIMIT POWER</h1>
+      <div class="subtitle">Consulting</div>
+      <div class="tagline">
+        Independent Electrical Feasibility & Capacity Advisory
+      </div>
+    </header>
+
+    <section>
+      <h2>What We Do</h2>
+      <p>
+        Limit Power Consulting provides advisory-only electrical feasibility and capacity assessments.
+        We help owners and project teams understand constraints, risks, and information gaps early—before
+        full design and capital commitments.
+      </p>
+    </section>
+
+    <section>
+      <h2>How We Help</h2>
+      <ul>
+        <li>Review of existing electrical documentation</li>
+        <li>Concept-level load and capacity analysis</li>
+        <li>Identification of constraints and assumptions</li>
+        <li>Feasibility and decision-support memoranda</li>
+        <li>Guidance on next steps prior to design</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What We Don’t Do</h2>
+      <p>
+        We do not provide electrical design services, stamped drawings, construction administration,
+        or field inspections.
+      </p>
+    </section>
+
+    <section>
+      <h2>When We’re Used</h2>
+      <p>
+        Typically engaged early—when teams need clarity on electrical feasibility to inform go/no-go
+        decisions, scope development, or whether to proceed with design.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Send a message and we’ll respond within 1–2 business days.</p>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label>Name</label>
+          <input type="text" name="name" required>
+
+          <label>Email</label>
+          <input type="email" name="email" required>
+
+          <label>Message</label>
+          <textarea name="message" required></textarea>
+
+          <input type="text" name="_gotcha" style="display:none">
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Limit Power Consulting LLC
+    </footer>
+  </div>
+</body>
+</html>
