@@ -1,2 +1,2 @@
-# limitpowerco.github.io
+# limitpowerconsulting.github.io
 Limt Power Consulting Website
