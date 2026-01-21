@@ -8,241 +8,676 @@
   <meta name="color-scheme" content="light dark" />
 
   <style>
+    /* ============================
+       LIMIT — Modern single-page site
+       Palette tuned to electric blue + slate neutrals
+       Includes: dark-mode toggle, subtle motion, scroll reveal
+       Requires: logo.png in same folder
+       ============================ */
+
     :root{
-      /* Brand palette (logo-matched) */
-      --blue-500:#2563EB;
-      --blue-600:#1D4ED8;
+      /* Brand blues */
+      --b1:#2563EB;  /* primary */
+      --b2:#1D4ED8;  /* hover */
+      --b3:#60A5FA;  /* soft highlight */
 
-      --slate-950:#0B1220;
-      --slate-900:#0F172A;
-      --slate-700:#334155;
-      --slate-600:#475569;
-      --slate-300:#CBD5E1;
-      --slate-200:#E2E8F0;
-      --slate-100:#F1F5F9;
-
-      --bg:#FFFFFF;
-      --surface:rgba(255,255,255,0.85);
-      --text:#0F172A;
+      /* Neutrals */
+      --bg:#ffffff;
+      --bg2:#f7f9ff;
+      --card:rgba(255,255,255,0.75);
+      --text:#0b1220;
       --muted:#475569;
-      --border:rgba(15,23,42,0.12);
+      --border:rgba(2, 6, 23, 0.12);
 
-      --radius:18px;
-      --max:1080px;
-      --shadow:0 18px 50px rgba(2,6,23,0.10);
+      /* Effects */
+      --shadow: 0 18px 60px rgba(2, 6, 23, 0.10);
+      --shadow2: 0 10px 28px rgba(2, 6, 23, 0.10);
+      --radius: 18px;
+
+      /* Layout */
+      --max: 1120px;
+
+      /* Motion */
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --dur: 700ms;
+
+      /* Focus ring */
+      --ring: 0 0 0 4px rgba(37,99,235,0.22);
     }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#070B14;
-        --surface:rgba(15,23,42,0.80);
-        --text:#E5E7EB;
-        --muted:#A3B0C2;
-        --border:rgba(226,232,240,0.12);
-        --shadow:0 18px 50px rgba(0,0,0,0.45);
-      }
+    /* Dark theme (manual toggle also supported) */
+    [data-theme="dark"]{
+      --bg:#060914;
+      --bg2:#070b18;
+      --card:rgba(15, 23, 42, 0.72);
+      --text:#e5e7eb;
+      --muted:#a3b0c2;
+      --border:rgba(226,232,240,0.12);
+
+      --shadow: 0 18px 60px rgba(0,0,0,0.45);
+      --shadow2: 0 10px 28px rgba(0,0,0,0.35);
+
+      --ring: 0 0 0 4px rgba(96,165,250,0.22);
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 15% -10%, rgba(37,99,235,0.18), transparent 55%),
+                  radial-gradient(900px 520px at 90% 10%, rgba(96,165,250,0.16), transparent 58%),
+                  linear-gradient(180deg, var(--bg2), var(--bg));
+      line-height: 1.55;
+      letter-spacing: 0.1px;
+      overflow-x:hidden;
     }
+
+    a{ color: inherit; }
+    a:hover{ text-decoration: none; }
 
     .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:48px 20px 72px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px;
     }
 
-    header{
-      text-align:center;
-      margin-bottom:48px;
+    /* ====== Top Nav ====== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 240px;
+    }
+    .brand img{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      padding: 6px;
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      box-shadow: var(--shadow2);
+      object-fit: contain;
+    }
+    .brand .t{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+    .brand .t strong{
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .brand .t span{
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
     }
 
-    .logo img{
-      width:190px;
-      max-width:70vw;
-      height:auto;
-      margin-bottom:10px;
+    .links{
+      display:flex;
+      align-items:center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .links a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .links a:hover{
+      color: var(--text);
+      background: color-mix(in srgb, var(--b1) 10%, transparent);
+    }
+
+    .btn-mini{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 80%, transparent);
+      color: var(--muted);
+      cursor:pointer;
+      transition: transform 160ms var(--ease), box-shadow 200ms var(--ease), border 200ms var(--ease);
+    }
+    .btn-mini:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); }
+    .btn-mini:active{ transform: translateY(0px); }
+    .sunmoon{
+      width:16px;height:16px; display:inline-block;
+      background: radial-gradient(circle at 30% 30%, var(--b3), var(--b1));
+      border-radius: 999px;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--b1) 15%, transparent);
+    }
+
+    /* ====== Hero ====== */
+    .hero{
+      padding: 56px 0 20px;
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 960px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--b1) 25%, var(--border));
+      background: color-mix(in srgb, var(--b1) 10%, transparent);
+      width: fit-content;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .k-dot{
+      width: 9px; height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--b1), var(--b3));
+      box-shadow: 0 0 0 5px color-mix(in srgb, var(--b1) 18%, transparent);
     }
 
     h1{
-      font-size:42px;
-      letter-spacing:0.14em;
-      margin:0;
-      text-transform:uppercase;
+      margin: 14px 0 10px;
+      font-size: 48px;
+      letter-spacing: -1px;
+      line-height: 1.02;
+    }
+    @media (max-width: 520px){
+      h1{ font-size: 38px; }
     }
 
-    .subtitle{
-      margin-top:10px;
-      font-size:14px;
-      letter-spacing:0.26em;
-      color:var(--muted);
-      text-transform:uppercase;
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 70ch;
+      margin: 0 0 16px;
     }
 
-    .tagline{
-      margin-top:18px;
-      font-size:16px;
-      color:var(--muted);
-      max-width:64ch;
-      margin-left:auto;
-      margin-right:auto;
+    .cta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
     }
-
-    section{
-      margin-top:36px;
-      padding-top:28px;
-      border-top:1px solid var(--border);
-    }
-
-    h2{
-      font-size:14px;
-      letter-spacing:0.22em;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-
-    p{color:var(--muted);}
-
-    ul{
-      margin:12px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-    }
-
-    li{margin:8px 0;}
-
-    .card{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:var(--shadow);
-    }
-
-    form{
-      display:grid;
-      gap:12px;
-      margin-top:14px;
-    }
-
-    label{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    input,textarea{
-      width:100%;
-      padding:12px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      font-family:inherit;
-    }
-
-    textarea{min-height:120px}
-
     .btn{
-      margin-top:10px;
-      padding:12px 16px;
-      border-radius:14px;
-      border:1px solid var(--blue-500);
-      background:linear-gradient(135deg,var(--blue-500),var(--blue-600));
-      color:white;
-      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 75%, transparent);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
       cursor:pointer;
+      transition: transform 160ms var(--ease), box-shadow 220ms var(--ease), border 220ms var(--ease);
+      text-decoration:none;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      border: 1px solid color-mix(in srgb, var(--b1) 35%, var(--border));
+      background: linear-gradient(135deg, var(--b1), var(--b2));
+      color: #fff;
+    }
+    .btn.primary:hover{ filter: brightness(0.98); }
+
+    .chiprow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .chip{
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+    .chip strong{ color: var(--text); }
+
+    /* ====== Metrics / Proof ====== */
+    .mini-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .metric{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+    }
+    .ico{
+      width: 34px; height: 34px;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--b1) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--b1) 20%, var(--border));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--b1);
+      font-weight: 800;
+    }
+    .metric strong{
+      display:block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .metric span{
+      display:block;
+      color: var(--muted);
+      font-size: 13px;
     }
 
+    /* ====== Sections ====== */
+    .section{
+      padding: 22px 0 0;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .col-6{ grid-column: span 6; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 960px){
+      .col-6{ grid-column: span 12; }
+    }
+
+    .h2{
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+    .lead{
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 80ch;
+    }
+
+    .bullets{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .bullets li{ margin: 9px 0; }
+
+    .callout{
+      border-radius: var(--radius);
+      border: 1px solid color-mix(in srgb, var(--b1) 18%, var(--border));
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--b1) 12%, var(--card)),
+        color-mix(in srgb, var(--b3) 10%, var(--card))
+      );
+      padding: 16px;
+      box-shadow: var(--shadow2);
+    }
+    .callout strong{ display:block; margin-bottom:6px; }
+    .callout span{ color: var(--muted); font-size: 13px; }
+
+    /* ====== Contact ====== */
+    form{ display:grid; gap: 10px; margin-top: 12px; }
+    label{ font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px; }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 75%, transparent);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: box-shadow 200ms var(--ease), border 200ms var(--ease);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus{
+      box-shadow: var(--ring);
+      border-color: color-mix(in srgb, var(--b1) 35%, var(--border));
+    }
+
+    .fine{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ====== Footer ====== */
     footer{
-      margin-top:56px;
-      padding-top:24px;
-      border-top:1px solid var(--border);
-      font-size:13px;
-      color:var(--muted);
-      text-align:center;
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--border);
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .foot-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .foot-links a{
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: background 200ms var(--ease), color 200ms var(--ease), border 200ms var(--ease);
+      text-decoration:none;
+    }
+    .foot-links a:hover{
+      color: var(--text);
+      background: color-mix(in srgb, var(--b1) 10%, transparent);
+      border-color: color-mix(in srgb, var(--b1) 12%, transparent);
+    }
+
+    /* ====== Scroll reveal ====== */
+    .reveal{
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.in{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ====== Subtle background animation ====== */
+    .orb{
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      border-radius: 999px;
+      pointer-events:none;
+      filter: blur(28px);
+      opacity: 0.55;
+      z-index: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(96,165,250,0.35), rgba(37,99,235,0.12), transparent 70%);
+      animation: floaty 10s var(--ease) infinite alternate;
+      top: -120px;
+      left: -110px;
+    }
+    .orb.two{
+      width: 460px; height: 460px;
+      top: 20%;
+      left: 70%;
+      opacity: 0.45;
+      animation-duration: 12s;
+      background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.30), rgba(96,165,250,0.10), transparent 72%);
+    }
+    @keyframes floaty{
+      from{ transform: translate3d(0,0,0); }
+      to{ transform: translate3d(16px, 22px, 0); }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .orb{ animation: none; }
+      .reveal{ transition: none; opacity: 1; transform:none; }
+      .btn, .btn-mini, .links a{ transition: none; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <!-- Optional logo -->
-      <div class="logo"><img src="logo.png" alt="Limit Power Consulting logo"></div>
+  <div class="orb" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
 
-      <!--<h1>LIMIT POWER</h1>
-      <div class="subtitle">Consulting</div> -->
-      <div class="tagline">
-        Independent Electrical Feasibility & Capacity Advisory
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" style="text-decoration:none;">
+          <img src="logo.png" alt="Limit Power Consulting logo" />
+          <div class="t">
+            <strong>LIMIT POWER</strong>
+            <span>Feasibility &amp; Capacity Advisory</span>
+          </div>
+        </a>
+
+        <div class="links">
+          <a href="#services">Services</a>
+          <a href="#scope">Scope</a>
+          <a href="#when">When</a>
+          <a href="#contact">Contact</a>
+
+          <button id="themeBtn" class="btn-mini" type="button" aria-label="Toggle dark mode">
+            <span class="sunmoon" aria-hidden="true"></span>
+            <span id="themeLabel">Theme</span>
+          </button>
+        </div>
       </div>
-    </header>
+    </div>
+  </div>
 
-    <section>
-      <h2>What We Do</h2>
-      <p>
-        Limit Power Consulting provides advisory-only electrical feasibility and capacity assessments.
-        We help owners and project teams understand constraints, risks, and information gaps early—before
-        full design and capital commitments.
-      </p>
+  <main id="top" class="wrap" style="position:relative; z-index:1;">
+    <section class="hero">
+      <div class="card reveal">
+        <div class="kicker"><span class="k-dot"></span> Advisory-only • Pre-design • Decision support</div>
+        <h1>Clarity on electrical constraints<br/>before full design.</h1>
+        <p class="sub">
+          Limit Power Consulting provides independent feasibility and capacity assessments to help owners and
+          project teams understand constraints, risks, and information gaps early—before scope and capital are committed.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#contact">Send a message</a>
+          <a class="btn" href="#services">Explore services</a>
+        </div>
+
+        <div class="chiprow">
+          <div class="chip"><strong>Fast</strong> planning-level insight</div>
+          <div class="chip"><strong>Clear</strong> assumptions &amp; limits</div>
+          <div class="chip"><strong>Focused</strong> on feasibility, not design</div>
+        </div>
+      </div>
+
+      <aside class="card reveal">
+        <div class="mini-grid">
+          <div class="metric">
+            <div class="ico">⚡</div>
+            <div>
+              <strong>Feasibility memo</strong>
+              <span>Concise findings, assumptions, constraints, and next steps.</span>
+            </div>
+          </div>
+          <div class="metric">
+            <div class="ico">📈</div>
+            <div>
+              <strong>Capacity framing</strong>
+              <span>Concept-level load/capacity review to inform decisions.</span>
+            </div>
+          </div>
+          <div class="metric">
+            <div class="ico">🧭</div>
+            <div>
+              <strong>Decision support</strong>
+              <span>Help teams reduce rework and avoid surprises later.</span>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>What we are (and aren’t)</strong>
+            <span>
+              Advisory-only. We don’t provide stamped design, construction administration, or field inspections.
+            </span>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <section>
-      <h2>How We Help</h2>
-      <ul>
-        <li>Review of existing electrical documentation</li>
-        <li>Concept-level load and capacity analysis</li>
-        <li>Identification of constraints and assumptions</li>
-        <li>Feasibility and decision-support memoranda</li>
-        <li>Guidance on next steps prior to design</li>
-      </ul>
-    </section>
+    <section class="section">
+      <div class="grid">
+        <div id="services" class="card col-6 reveal">
+          <div class="h2">Services</div>
+          <p class="lead">
+            Focused, pre-design advisory support to clarify feasibility and inform go/no-go and scoping decisions.
+          </p>
+          <ul class="bullets">
+            <li>Review of available electrical documentation and utility information</li>
+            <li>Concept-level load and capacity analysis</li>
+            <li>Constraints, assumptions, and risk drivers documented clearly</li>
+            <li>Decision-support memorandum suitable for internal planning</li>
+          </ul>
+        </div>
 
-    <section>
-      <h2>What We Don’t Do</h2>
-      <p>
-        We do not provide electrical design services, stamped drawings, construction administration,
-        or field inspections.
-      </p>
-    </section>
+        <div id="scope" class="card col-6 reveal">
+          <div class="h2">What we don’t do</div>
+          <p class="lead">
+            Keeping scope boundaries clear protects the project and keeps expectations aligned.
+          </p>
+          <ul class="bullets">
+            <li>No electrical design services or stamped drawings</li>
+            <li>No construction administration, supervision, or trade work</li>
+            <li>No field inspections or verification of installed conditions</li>
+            <li>No short-circuit/coordination/arc-flash deliverables (design-phase studies)</li>
+          </ul>
+        </div>
 
-    <section>
-      <h2>When We’re Used</h2>
-      <p>
-        Typically engaged early—when teams need clarity on electrical feasibility to inform go/no-go
-        decisions, scope development, or whether to proceed with design.
-      </p>
-    </section>
+        <div id="when" class="card col-6 reveal">
+          <div class="h2">When we’re used</div>
+          <p class="lead">
+            Typically engaged early—when teams need clarity on feasibility before committing design hours or capital.
+          </p>
+          <ul class="bullets">
+            <li>Owners evaluating expansions, electrification, or new loads</li>
+            <li>PMs scoping early design and identifying risk drivers</li>
+            <li>Architects validating feasibility during concept stage</li>
+            <li>Facilities teams planning upgrades and capital projects</li>
+          </ul>
+        </div>
 
-    <section>
-      <h2>Contact</h2>
-      <div class="card">
-        <p>Send a message and we’ll respond within 1–2 business days.</p>
+        <div id="contact" class="card col-6 reveal">
+          <div class="h2">Contact</div>
+          <p class="lead">Send a message and we’ll respond within 1–2 business days.</p>
 
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <label>Name</label>
-          <input type="text" name="name" required>
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
 
-          <label>Email</label>
-          <input type="email" name="email" required>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
 
-          <label>Message</label>
-          <textarea name="message" required></textarea>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
 
-          <input type="text" name="_gotcha" style="display:none">
-          <button class="btn" type="submit">Send</button>
-        </form>
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <button class="btn primary" type="submit">Send</button>
+            <div class="fine">Your email is not displayed publicly; messages are delivered privately.</div>
+          </form>
+        </div>
       </div>
     </section>
 
     <footer>
-      © 2026 Limit Power Consulting LLC
+      <div>© <span id="year"></span> Limit Power Consulting LLC</div>
+      <div class="foot-links">
+        <a href="#services">Services</a>
+        <a href="#scope">Scope</a>
+        <a href="#contact">Contact</a>
+      </div>
     </footer>
-  </div>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme toggle (persists)
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById("themeBtn");
+      const label = document.getElementById("themeLabel");
+
+      const stored = localStorage.getItem("limit_theme");
+      if (stored === "dark" || stored === "light") {
+        root.setAttribute("data-theme", stored);
+      } else {
+        // Default: follow system preference
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      }
+
+      function refreshLabel(){
+        const t = root.getAttribute("data-theme");
+        label.textContent = (t === "dark") ? "Dark" : "Light";
+      }
+      refreshLabel();
+
+      btn.addEventListener("click", () => {
+        const cur = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        const next = (cur === "dark") ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("limit_theme", next);
+        refreshLabel();
+      });
+    })();
+
+    // Scroll reveal
+    (function(){
+      const els = Array.from(document.querySelectorAll(".reveal"));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("in");
+        });
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
 </html>
