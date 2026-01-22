@@ -1241,19 +1241,16 @@
                                 <p id="text08" class="text-component instance-8 style-4">We are typically engaged early, when teams need clarity on electrical feasibility to inform go / no-go decisions, scope development, or whether to proceed with design.</p>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                     <div id="container05" class="container-component instance-5 style-1 default">
                         <div class="wrapper">
                             <div class="inner">
                                 <h2 id="text22" class="text-component instance-22 style-2">Contact Us</h2>
                           <div id="contact" class="section contact">
-        <h2>Contact</h2>
-        <p>Send a message and we’ll respond within 1–2 business days.</p>
-
         <!-- FORM OPTION (Formspree):
              1) Create a free Formspree form
              2) Replace YOUR_FORM_ID below with your actual ID -->
-        <form action="https://formspree.io/f/mnjjyrgw" method="POST">
+                <form action="https://formspree.io/f/mnjjyrgw" method="POST">
           <div>
             <label for="name">Name</label>
             <input id="name" name="name" type="text" required />
@@ -1276,7 +1273,29 @@
           <div class="hint">Your email is not displayed publicly; messages are delivered privately.</div>
         </form>
       </div>
-                                <p id="text23" class="text-component instance-23 style-4">Auctor commodo interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.</p>
+        <p id="text23" class="text-component instance-23 style-4"><div id="contact" class="section contact">
+        <!-- FORM OPTION (Formspree):
+             1) Create a free Formspree form
+             2) Replace YOUR_FORM_ID below with your actual ID -->
+        <form action="https://formspree.io/f/mnjjyrgw" method="POST">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <!-- simple anti-spam honeypot -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <button class="btn primary" type="submit">Send</button>
+          <div class="hint">Your email is not displayed publicly; messages are delivered privately.</div>
+        </form>
+      </div></p>
                             </div>
                         </div>
                     </div>
