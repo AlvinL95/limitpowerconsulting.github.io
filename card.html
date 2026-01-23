@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Limit Power Consulting — Contact</title>
+  <meta name="description" content="Virtual business card for Limit Power Consulting." />
+  <style>
+    :root{
+      --blue:#2563eb;
+      --bg:#0b1220;
+      --card:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.14);
+      --text:#e5e7eb;
+      --muted:#b8c3d3;
+      --radius:18px;
+    }
+    body{
+      margin:0;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(900px 500px at 20% 0%, rgba(37,99,235,0.35), transparent 55%),
+                  radial-gradient(800px 500px at 100% 20%, rgba(96,165,250,0.25), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:28px 16px;
+    }
+    .card{
+      width:min(520px, 100%);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      backdrop-filter: blur(10px);
+    }
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:64px;height:64px;
+      border-radius:16px;
+      background:rgba(37,99,235,0.18);
+      border:1px solid rgba(37,99,235,0.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:10px;
+    }
+    h1{
+      font-size:18px;
+      margin:0;
+      letter-spacing:0.10em;
+      text-transform:uppercase;
+    }
+    .subtitle{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .buttons{
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+    }
+    a.btn{
+      text-decoration:none;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.14);
+      color:var(--text);
+      background:rgba(255,255,255,0.06);
+      font-weight:600;
+    }
+    a.btn.primary{
+      background:linear-gradient(135deg, var(--blue), #1d4ed8);
+      border-color:rgba(37,99,235,0.4);
+    }
+    .row{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .row a{ color:var(--text); }
+    .fine{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+      opacity:0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div class="logo">
+        <img src="logo.png" alt="Limit Power logo">
+      </div>
+      <div>
+        <h1>LIMIT POWER</h1>
+        <div class="subtitle">Electrical Feasibility & Capacity Advisory</div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a class="btn primary" href="/limitpower.vcf">Save Contact</a>
+      <a class="btn" href="https://limitpowerco.com">Visit Website</a>
+      <a class="btn" href="mailto:alvin@limitpowerco.com">Email</a>
+      <a class="btn" href="tel:+13479244246">Call</a>
+    </div>
+
+    <div class="row">
+      <strong>Alvin Lachhman</strong><br/>
+      Principal Consultant • Franklin Square, NY
+    </div>
+
+    <div class="fine">
+      Tip: Tap “Save Contact” on your phone to add the contact instantly.
+    </div>
+  </div>
+</body>
+</html>
