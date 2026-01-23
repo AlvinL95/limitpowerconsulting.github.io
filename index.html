@@ -14,9 +14,9 @@
         <meta property="og:image:type" content="image/jpeg"/>
         <meta property="og:image:width" content="1280"/>
         <meta property="og:image:height" content="800"/>
-        <meta property="og:url" content="https://limitpowerco.carrd.co"/>
+        <meta property="og:url" content="https://limitpowerco.com"/>
         <meta property="twitter:card" content="summary_large_image"/>
-        <link rel="canonical" href="https://limitpowerco.carrd.co"/>
+        <link rel="canonical" href="https://limitpowerco.com"/>
         <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;1,400;1,500" rel="stylesheet" type="text/css"/>
         <style>
             html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
@@ -1673,7 +1673,7 @@
                                         <sup>CONSULTING</sup>
                                     </span>
                                 </h1>
-                                <p id="text02" class="text-component instance-2 style-4">Independent Electrical Feasibility &amp;Capacity Advisory</p>
+                                <p id="text02" class="text-component instance-2 style-4">Independent Electrical Feasibility &amp; Capacity Advisory</p>
                             </div>
                         </div>
                     </div>
@@ -1724,7 +1724,7 @@
                             <div class="inner">
                                 <h2 id="text22" class="text-component instance-22 style-2">Contact Us</h2>
                                 <!--p id="text23" class="text-component instance-23 style-4">Auctor commodo interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.</p-->
-                                <form id="contact-form" action="https://formspree.io/f/mnjjyrgw" method="post" class="form-component instance-1">
+                                <!--<form id="form01" action="https://formspree.io/f/mnjjyrgw" method="POST"> class="form-component instance-1">
                                     <div class="inner">
                                         <div class="field">
                                             <input type="text" name="name" id="form01-name" placeholder="Name" maxlength="128" required/>
@@ -1743,7 +1743,29 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="id" value="form01"/>
-                                </form>
+                                </form>-->
+                                <form id="contact-form" action="https://formspree.io/f/mnjjyrgw" method="POST" class="form-component instance-1">
+  <div class="inner">
+    <div class="field">
+      <input type="text" name="name" id="form01-name" placeholder="Name" maxlength="128" required>
+    </div>
+
+    <div class="field">
+      <input type="email" name="email" id="form01-email" placeholder="Email" maxlength="128" required>
+    </div>
+
+    <div class="field">
+      <textarea name="message" id="form01-message" placeholder="Message" maxlength="16384" required></textarea>
+    </div>
+
+    <!-- Optional: helps you identify submissions -->
+    <input type="hidden" name="_subject" value="New inquiry from LimitPowerCo.com">
+
+    <div class="actions">
+      <button type="submit">Send</button>
+    </div>
+  </div>
+</form>
                             </div>
                         </div>
                     </div>
@@ -4283,16 +4305,16 @@
                     }
                 }
                 ;
-                new form('form01',{
-                    mode: 'contact',
-                    method: 'ajax',
-                    hid: 'data-url',
-                    success: {
-                        mode: 1,
-                        value: 'Thank You - We will respond in 24-48 hours',
-                    },
-                    optional: ['phone', 'company'],
-                });
+                //new form('form01',{
+                    //mode: 'contact',
+                    //method: 'ajax',
+                    //hid: 'data-url',
+                    //success: {
+                        //mode: 1,
+                        //value: 'Thank You - We will respond in 24-48 hours',
+                    //},
+                    //optional: ['phone', 'company'],
+                //});
                 onvisible.add('.text-component.style-1', {
                     style: 'fade-up',
                     speed: 1000,
@@ -4320,7 +4342,9 @@
                 ready.run();
             }
             )();
-            const form = document.getElementById("contact-form");
+        </script>
+        <script>
+  const form = document.getElementById("contact-form");
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -4354,6 +4378,7 @@
       `;
     }
   });
-        </script>
+</script>
+
     </body>
 </html>
