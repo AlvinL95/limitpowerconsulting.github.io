@@ -4363,9 +4363,14 @@
       if (response.ok) {
         form.reset();
         form.innerHTML = `
-          <p style="color:#2563eb; font-weight:600;">
-            Thank you for contacing Limit Power Consulting.<br>We will respond to your inquiry within 48 hours.
-          </p>
+<div style="text-align:center;">
+    <p style="color:#2563eb; font-weight:600;">
+      Thank you for contacing Limit Power Consulting.
+    </p>
+    <p>
+      We will respond to your inquiry within 48 hours.
+    </p>
+  </div>
         `;
       } else {
         throw new Error("Form submission failed");
