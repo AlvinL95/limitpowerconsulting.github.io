@@ -1,225 +1,256 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Limit Power Consulting — Virtual Card</title>
-  <meta name="description" content="Virtual business card for Limit Power Consulting." />
-  <meta name="color-scheme" content="light dark" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Limit Power Consulting — Virtual Card</title>
+<meta name="description" content="Virtual business card for Limit Power Consulting." />
+<meta name="color-scheme" content="light dark" />
 
-  <style>
-    :root{
-      --blue:#2563eb;
-      --bg:#0b1220;
-      --card:rgba(255,255,255,0.08);
-      --border:rgba(255,255,255,0.14);
-      --text:#e5e7eb;
-      --muted:#b8c3d3;
-      --radius:18px;
-    }
+<style>
+/* =========
+      Virtual Business Card — ORIGINAL STYLE + COLOR SCHEME
+      Requirements:
+      - Put this file at: /card/index.html   (or /card.html if you prefer)
+      - Put logo at: /logo.png
+      - Put vCard at: /limitpower.vcf
+      ========= */
 
-    body{
-      margin:0;
-      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      text-align:center;
-      padding:40px 16px;
-      color:var(--text);
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(37,99,235,0.35), transparent 55%),
-        radial-gradient(800px 500px at 100% 20%, rgba(96,165,250,0.25), transparent 60%),
-        var(--bg);
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-    }
+:root{
+--blue:#2563eb;
+--bg:#0b1220;
+--card:rgba(255,255,255,0.08);
+--border:rgba(255,255,255,0.14);
+--text:#e5e7eb;
+--muted:#b8c3d3;
+--radius:18px;
+}
 
-    .card{
-      width:min(520px, 100%);
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:22px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+body{
+margin:0;
+font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;
+text-align:center;
+padding:40px 16px;
+color:var(--text);
+background:
+radial-gradient(900px 500px at 20% 0%, rgba(37,99,235,0.35), transparent 55%),
+radial-gradient(800px 500px at 100% 20%, rgba(96,165,250,0.25), transparent 60%),
+var(--bg);
+min-height:100vh;
+display:grid;
+place-items:center;
+}
 
-    .logo{
-      width:64px;height:64px;
-      margin: 0 auto 12px;
-      border-radius:16px;
-      background:rgba(37,99,235,0.18);
-      border:1px solid rgba(37,99,235,0.25);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-    }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      padding:10px;
-    }
+.card{
+width:min(520px, 100%);
+background:var(--card);
+border:1px solid var(--border);
+border-radius:var(--radius);
+padding:22px;
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+}
 
-    h2{
-      margin: 6px 0 2px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      font-size: 18px;
-    }
-    .tag{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: .06em;
-    }
+.logo{
+width:64px;height:64px;
+margin: 0 auto 12px;
+border-radius:16px;
+background:rgba(37,99,235,0.18);
+border:1px solid rgba(37,99,235,0.25);
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+.logo img{
+width:100%;
+height:100%;
+object-fit:contain;
+padding:10px;
+}
 
-    .buttons{
-      margin-top:14px;
-      display:grid;
-      gap:10px;
-    }
+h2{
+margin: 6px 0 2px;
+letter-spacing: .14em;
+text-transform: uppercase;
+font-size: 18px;
+color: #178be1
+}
+.tag{
+margin: 0 0 14px;
+color: var(--muted);
+font-size: 13px;
+letter-spacing: .06em;
+}
 
-    a.btn{
-      -webkit-appearance:none;
-      appearance:none;
-      width:100%;
-      text-decoration:none;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.14);
-      color:var(--text);
-      background:rgba(255,255,255,0.06);
-      font-weight:650;
-      cursor:pointer;
-    }
+.buttons{
+margin-top:13px;
+display:grid;
+gap:10px;
+}
 
-    a.btn.primary{
-      background:linear-gradient(135deg, var(--blue), #1d4ed8);
-      border-color:rgba(37,99,235,0.4);
-    }
+a.btn, button.btn{
+-webkit-appearance:none;
+appearance:none;
+width:100%;
+text-decoration:none;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:12px 0px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.14);
+color:var(--text);
+background:rgba(255,255,255,0.06);
+font-weight:650;
+cursor:pointer;
+}
 
-    a.btn:hover{ filter: brightness(1.03); }
-    a.btn:active{ transform: translateY(1px); }
+a.btn.primary, button.btn.primary{
+background:linear-gradient(135deg, var(--blue), #178be1);
+border-color:rgba(37,99,235,0.4);
+}
 
-    a.btn.disabled{
-      opacity:0.75;
-      pointer-events:none;
-      transform:none;
-    }
+a.btn:hover, button.btn:hover{
+filter: brightness(1.03);
+}
+button.btn:active{
+transform: translateY(1px);
+}
+button.btn[disabled]{
+opacity:0.75;
+cursor:default;
+transform:none;
+}
 
-    .row{
-      margin-top:16px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.55;
-    }
-    .row strong{ color: var(--text); }
+.row{
+margin-top:16px;
+color:var(--muted);
+font-size:13px;
+line-height:1.55;
+}
+.row strong{ color: var(--text); }
 
-    .fine{
-      margin-top:14px;
-      color:var(--muted);
-      font-size:12px;
-      opacity:0.95;
-      line-height:1.45;
-    }
+.fine{
+margin-top:14px;
+color:var(--muted);
+font-size:12px;
+opacity:0.95;
+line-height:1.45;
+}
 
-    .toast{
-      display:none;
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(37,99,235,0.25);
-      background: rgba(37,99,235,0.10);
-      color: var(--text);
-      font-size: 13px;
-      text-align:center;
-    }
-    .toast.show{ display:block; }
-  </style>
+.toast{
+display:none;
+margin-top: 12px;
+padding: 10px 12px;
+border-radius: 14px;
+border: 1px solid rgba(37,99,235,0.25);
+background: rgba(37,99,235,0.10);
+color: var(--text);
+font-size: 13px;
+text-align:center;
+}
+.toast.show{ display:block; }
+</style>
 </head>
 
 <body>
-  <div class="card">
-    <div class="logo">
-      <img src="/logo.png" alt="Limit Power logo">
-    </div>
+<div class="card">
+<div class="logo">
+<img src="/card/logo.png" alt="Limit Power logo">
+</div>
+    <h2><strong>Alvin Lachhman, P.E.</strong></h2>
+    <h2><strong> Lachhman, P.E.</strong></h2>
+<h2>Limit Power Consulting</h2>
+<div class="tag">Electrical Feasibility &amp; Capacity Advisory</div>
 
-    <h2>Limit Power Consulting</h2>
-    <div class="tag">Electrical Feasibility &amp; Capacity Advisory</div>
+<div class="buttons">
+<!-- JS handles download/open behavior -->
+<button id="saveContactBtn" class="btn primary" type="button">Save Contact</button>
 
-    <div class="buttons">
-      <!-- iPhone reliability: plain link opens .vcf and triggers Add Contact sheet -->
-      <a id="saveContactLink" class="btn primary" href="/limitpower.vcf">Save Contact</a>
+<a class="btn" href="https://limitpowerco.com">Visit Website</a>
+<a class="btn" href="mailto:LachhmanA@limitpowerco.com">Email</a>
+<a class="btn" href="tel:+13479244246">Call</a>
 
-      <a class="btn" href="https://www.limitpowerco.com">Visit Website</a>
-      <a class="btn" href="mailto:alvin@limitpowerco.com">Email</a>
-      <a class="btn" href="tel:+13479244246">Call</a>
-    </div>
+<!-- Optional: keeps a direct link available -->
+      <!--a class="btn" href="/AlvinLachhman.vcf">Direct vCard Link</a>-->
+      <!--a class="btn" href="/Lachhman.vcf">Direct vCard Link</a>-->
+</div>
 
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <div class="row">
-      <strong>Alvin Lachhman</strong><br/>
-      Principal Consultant • Franklin Square, NY
-    </div>
+<div class="row">
+      <!--strong>Alvin Lachhman</strong><br/-->
+      <!--strong> Lachhman</strong><br/-->
+Consultant • Franklin Square, NY
+</div>
 
-    <div class="fine">
-      Tip: On iPhone, “Save Contact” opens the Add Contact sheet. On desktop/Android, it downloads the contact file.
-    </div>
-  </div>
+<div class="fine">
+Tip: On iPhone, “Save Contact” opens the Add Contact sheet. On desktop/Android, it downloads the contact file.
+</div>
+</div>
 
-  <script>
-    const VCARD_URL = "/limitpower.vcf";
-    const VCARD_FILENAME = "limitpower.vcf";
+<script>
+// ====== CONFIG ======
+// Put your vCard at: https://limitpowerco.com/limitpower.vcf
+    const VCARD_URL = "/AlvinLachhman.vcf";
+    const VCARD_URL = "https://limitpowerco.com/AlvinLachhman.vcf";
+const VCARD_FILENAME = "/AlvinLachhman.vcf";
 
-    const link = document.getElementById("saveContactLink");
-    const toast = document.getElementById("toast");
+const btn = document.getElementById("saveContactBtn");
+const toast = document.getElementById("toast");
 
-    function isIOS() {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    }
+function isIOS() {
+// iOS Safari handles opening .vcf -> Add Contact best
+return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
 
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add("show");
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => toast.classList.remove("show"), 4500);
-    }
+function showToast(msg) {
+toast.textContent = msg;
+toast.classList.add("show");
+clearTimeout(showToast._t);
+showToast._t = setTimeout(() => toast.classList.remove("show"), 4500);
+}
 
-    async function downloadVCardAsBlob() {
-      const res = await fetch(VCARD_URL, { cache: "no-store" });
-      if (!res.ok) throw new Error("Fetch failed");
-      const blob = await res.blob();
+async function downloadVCardAsBlob() {
+const res = await fetch(VCARD_URL, { cache: "no-store" });
+if (!res.ok) throw new Error("Fetch failed");
+const blob = await res.blob();
 
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = VCARD_FILENAME;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
+a.href = url;
+a.download = VCARD_FILENAME;
+document.body.appendChild(a);
+a.click();
+a.remove();
+URL.revokeObjectURL(url);
+}
 
-    // On non‑iOS devices, intercept click to download without navigating away
-    if (!isIOS()) {
-      link.addEventListener("click", async (e) => {
-        e.preventDefault();
-        link.classList.add("disabled");
-        try {
-          await downloadVCardAsBlob();
-          showToast("Downloaded. Open the file to save the contact.");
-        } catch (err) {
-          window.location.href = VCARD_URL;
-        } finally {
-          setTimeout(() => link.classList.remove("disabled"), 900);
-        }
-      });
-    }
-  </script>
+btn.addEventListener("click", async () => {
+btn.disabled = true;
+const prev = btn.textContent;
+btn.textContent = "Saving…";
+
+try {
+if (isIOS()) {
+// Best UX on iPhone: open .vcf -> Add Contact sheet
+window.location.href = VCARD_URL;
+} else {
+// Best UX on desktop/Android: download
+await downloadVCardAsBlob();
+showToast("Downloaded. Open the file to save the contact.");
+}
+} catch (e) {
+// Fallback: just open the vCard
+window.location.href = VCARD_URL;
+} finally {
+setTimeout(() => {
+btn.disabled = false;
+btn.textContent = prev;
+}, 900);
+}
+});
+</script>
 </body>
 </html>
