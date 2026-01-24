@@ -8,14 +8,6 @@
   <meta name="color-scheme" content="light dark" />
 
   <style>
-    /* =========
-       Virtual Business Card — ORIGINAL STYLE + COLOR SCHEME
-       Requirements:
-       - Put this file at: /card/index.html   (or /card.html if you prefer)
-       - Put logo at: /logo.png
-       - Put vCard at: /limitpower.vcf
-       ========= */
-
     :root{
       --blue:#2563eb;
       --bg:#0b1220;
@@ -74,7 +66,6 @@
       letter-spacing: .14em;
       text-transform: uppercase;
       font-size: 18px;
-      color: #178be1
     }
     .tag{
       margin: 0 0 14px;
@@ -84,12 +75,12 @@
     }
 
     .buttons{
-      margin-top:13px;
+      margin-top:14px;
       display:grid;
       gap:10px;
     }
 
-    a.btn, button.btn{
+    a.btn{
       -webkit-appearance:none;
       appearance:none;
       width:100%;
@@ -97,7 +88,7 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:12px 0px;
+      padding:12px 14px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,0.14);
       color:var(--text);
@@ -106,20 +97,17 @@
       cursor:pointer;
     }
 
-    a.btn.primary, button.btn.primary{
-      background:linear-gradient(135deg, var(--blue), #178be1);
+    a.btn.primary{
+      background:linear-gradient(135deg, var(--blue), #1d4ed8);
       border-color:rgba(37,99,235,0.4);
     }
 
-    a.btn:hover, button.btn:hover{
-      filter: brightness(1.03);
-    }
-    button.btn:active{
-      transform: translateY(1px);
-    }
-    button.btn[disabled]{
+    a.btn:hover{ filter: brightness(1.03); }
+    a.btn:active{ transform: translateY(1px); }
+
+    a.btn.disabled{
       opacity:0.75;
-      cursor:default;
+      pointer-events:none;
       transform:none;
     }
 
@@ -157,29 +145,26 @@
 <body>
   <div class="card">
     <div class="logo">
-      <img src="/card/logo.png" alt="Limit Power logo">
+      <img src="/logo.png" alt="Limit Power logo">
     </div>
-    <h2><strong> Lachhman, P.E.</strong></h2>
+
     <h2>Limit Power Consulting</h2>
     <div class="tag">Electrical Feasibility &amp; Capacity Advisory</div>
 
     <div class="buttons">
-      <!-- JS handles download/open behavior -->
-      <button id="saveContactBtn" class="btn primary" type="button">Save Contact</button>
+      <!-- iPhone reliability: plain link opens .vcf and triggers Add Contact sheet -->
+      <a id="saveContactLink" class="btn primary" href="/limitpower.vcf">Save Contact</a>
 
-      <a class="btn" href="https://limitpowerco.com">Visit Website</a>
-      <a class="btn" href="mailto:LachhmanA@limitpowerco.com">Email</a>
+      <a class="btn" href="https://www.limitpowerco.com">Visit Website</a>
+      <a class="btn" href="mailto:alvin@limitpowerco.com">Email</a>
       <a class="btn" href="tel:+13479244246">Call</a>
-
-      <!-- Optional: keeps a direct link available -->
-      <!--a class="btn" href="/Lachhman.vcf">Direct vCard Link</a>-->
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <div class="row">
-      <!--strong> Lachhman</strong><br/-->
-      Consultant • Franklin Square, NY
+      <strong>Alvin Lachhman</strong><br/>
+      Principal Consultant • Franklin Square, NY
     </div>
 
     <div class="fine">
@@ -188,16 +173,13 @@
   </div>
 
   <script>
-    // ====== CONFIG ======
-    // Put your vCard at: https://limitpowerco.com/limitpower.vcf
-    const VCARD_URL = "https://limitpowerco.com/AlvinLachhman.vcf";
-    const VCARD_FILENAME = "/AlvinLachhman.vcf";
+    const VCARD_URL = "/limitpower.vcf";
+    const VCARD_FILENAME = "limitpower.vcf";
 
-    const btn = document.getElementById("saveContactBtn");
+    const link = document.getElementById("saveContactLink");
     const toast = document.getElementById("toast");
 
     function isIOS() {
-      // iOS Safari handles opening .vcf -> Add Contact best
       return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
 
@@ -223,30 +205,21 @@
       URL.revokeObjectURL(url);
     }
 
-    btn.addEventListener("click", async () => {
-      btn.disabled = true;
-      const prev = btn.textContent;
-      btn.textContent = "Saving…";
-
-      try {
-        if (isIOS()) {
-          // Best UX on iPhone: open .vcf -> Add Contact sheet
-          window.location.href = VCARD_URL;
-        } else {
-          // Best UX on desktop/Android: download
+    // On non‑iOS devices, intercept click to download without navigating away
+    if (!isIOS()) {
+      link.addEventListener("click", async (e) => {
+        e.preventDefault();
+        link.classList.add("disabled");
+        try {
           await downloadVCardAsBlob();
           showToast("Downloaded. Open the file to save the contact.");
+        } catch (err) {
+          window.location.href = VCARD_URL;
+        } finally {
+          setTimeout(() => link.classList.remove("disabled"), 900);
         }
-      } catch (e) {
-        // Fallback: just open the vCard
-        window.location.href = VCARD_URL;
-      } finally {
-        setTimeout(() => {
-          btn.disabled = false;
-          btn.textContent = prev;
-        }, 900);
-      }
-    });
+      });
+    }
   </script>
 </body>
 </html>
